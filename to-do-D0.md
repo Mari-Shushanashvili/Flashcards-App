@@ -14,14 +14,10 @@
   - [x] P-A2-S2: Create `GET /api/get-latest-answer` endpoint.  
     *Details:* Calls `state.getLatestAnswer()`. Returns 200 status with JSON body `{ "latestAnswer": string | null }`.
 
-- [ ] **P-A3: Local Backend Testing**
-  - [ ] P-A3-S1: Test `POST /api/create-answer` using Postman (send data, verify 201 response, check backend logs).
-  - [ ] P-A3-S2: Test `GET /api/get-latest-answer` using Postman (verify it returns the data sent in P-A3-S1).
-  - [ ] P-A3-S3: Send a new value to `POST /api/create-answer` and re-test `GET /api/get-latest-answer` to confirm it updates.
-
-- [ ] **P-A4: Git: Commit Backend Changes**
-  - [ ] P-A4-S1: Create a new feature branch (e.g., `feature/deployment-assignment-backend`).
-  - [ ] P-A4-S2: Commit changes to `state.ts` and `apiRoutes.ts`.
+- [x] **P-A3: Local Backend Testing**
+  - [x] P-A3-S1: Test `POST /api/create-answer` using Postman (send data, verify 201 response, check backend logs).
+  - [x] P-A3-S2: Test `GET /api/get-latest-answer` using Postman (verify it returns the data sent in P-A3-S1).
+  - [x] P-A3-S3: Send a new value to `POST /api/create-answer` and re-test `GET /api/get-latest-answer` to confirm it updates.
 
 ---
 
