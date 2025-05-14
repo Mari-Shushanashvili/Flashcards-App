@@ -8,10 +8,10 @@
   - [x] P-A1-S2: Implement `setLatestAnswer(answer: string)` function.
   - [x] P-A1-S3: Implement `getLatestAnswer(): string | null` function.
 
-- [ ] **P-A2: Implement New API Endpoints (`backend/src/routes/apiRoutes.ts`)**
-  - [ ] P-A2-S1: Create `POST /api/create-answer` endpoint.  
+- [x] **P-A2: Implement New API Endpoints (`backend/src/routes/apiRoutes.ts`)**
+  - [x] P-A2-S1: Create `POST /api/create-answer` endpoint.  
     *Details:* Accepts JSON body `{ "data": "string" }`. Calls `state.setLatestAnswer()` with the received data. Returns 201 status with success message. Includes input validation for `data` field.
-  - [ ] P-A2-S2: Create `GET /api/get-latest-answer` endpoint.  
+  - [x] P-A2-S2: Create `GET /api/get-latest-answer` endpoint.  
     *Details:* Calls `state.getLatestAnswer()`. Returns 200 status with JSON body `{ "latestAnswer": string | null }`.
 
 - [ ] **P-A3: Local Backend Testing**

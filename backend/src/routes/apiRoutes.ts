@@ -307,4 +307,70 @@ router.post("/cards", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @name POST /api/create-answer
+ * @description Stores a new "latest answer" string in the application's in-memory state.
+ * @route POST /api/create-answer
+ * @param {Request} req The Express request object. Expects JSON body { "data": "string" }.
+ * @param {Response} res The Express response object.
+ * @returns {void}
+ *
+ * @spec.requires req.body contains a 'data' field with a non-empty string value. state.setLatestAnswer is available.
+ * @spec.effects
+ *   - Validates the 'data' field in the request body.
+ *   - Calls state.setLatestAnswer() with the provided string (trimmed).
+ *   - On success: Sends a 201 Created response with JSON body { message: "Answer created successfully", answer: string }.
+ *   - If validation fails: Sends a 400 Bad Request response with JSON body { error: string }.
+ *   - On other errors: Sends a 500 Internal Server Error response.
+ * @spec.modifies In-memory state via state.setLatestAnswer(), res object.
+ */
+router.post('/create-answer', (req: Request, res: Response) => {
+    console.log(`[API] POST /api/create-answer received with body:`, req.body);
+    const { data } = req.body;
+
+    if (data === undefined || typeof data !== 'string' || data.trim() === '') {
+        const errorMessage = "Missing or invalid 'data' field. It must be a non-empty string.";
+        console.warn(`[API] POST /api/create-answer - Validation Error: ${errorMessage} (Received: ${JSON.stringify(data)})`);
+        return res.status(400).json({ error: errorMessage });
+    }
+
+    const trimmedData = data.trim();
+
+    try {
+        state.setLatestAnswer(trimmedData);
+        console.log(`[API] POST /api/create-answer - Successfully set answer: "${trimmedData}"`);
+        res.status(201).json({ message: "Answer created successfully", answer: trimmedData });
+    } catch (error) {
+        console.error("[API] Error in /api/create-answer while setting answer:", error);
+        res.status(500).json({ error: "Failed to create answer due to an internal server error." });
+    }
+});
+
+/**
+ * @name GET /api/get-latest-answer
+ * @description Retrieves the most recently stored "latest answer" string from the application's in-memory state.
+ * @route GET /api/get-latest-answer
+ * @param {Request} req The Express request object. No parameters or body expected.
+ * @param {Response} res The Express response object.
+ * @returns {void}
+ *
+ * @spec.requires state.getLatestAnswer is available.
+ * @spec.effects
+ *   - Calls state.getLatestAnswer().
+ *   - On success: Sends a 200 OK response with JSON body { latestAnswer: string | null }.
+ *   - On error: Sends a 500 Internal Server Error response.
+ * @spec.modifies res object.
+ */
+router.get('/get-latest-answer', (req: Request, res: Response) => {
+    console.log(`[API] GET /api/get-latest-answer received`);
+    try {
+        const latestAnswerValue = state.getLatestAnswer();
+        console.log(`[API] GET /api/get-latest-answer - Retrieved answer: "${latestAnswerValue}"`);
+        res.status(200).json({ latestAnswer: latestAnswerValue });
+    } catch (error) {
+        console.error("[API] Error in /api/get-latest-answer while retrieving answer:", error);
+        res.status(500).json({ error: "Failed to retrieve the latest answer due to an internal error." });
+    }
+});
+
 export default router;
