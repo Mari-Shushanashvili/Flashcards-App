@@ -24,28 +24,27 @@
 ## Phase B: Frontend Preparation (Local Development)
 **Goal:** Modify the existing React frontend to display the data from the new backend endpoint.
 
-- [ ] **P-B1: Update API Service (`frontend/src/services/api.ts`)**
-  - [ ] P-B1-S1: Add `fetchLatestAnswer()` function to call `GET /api/get-latest-answer`.
+- [x] **P-B1: Update API Service (`frontend/src/services/api.ts`)**
+  - [x] P-B1-S1: Add `fetchLatestAnswer()` function to call `GET /api/get-latest-answer`.
 
-- [ ] **P-B2: Create Answer Display Component (`frontend/src/components/AnswerDisplay.tsx`)**
-  - [ ] P-B2-S1: Create a new React functional component.
-  - [ ] P-B2-S2: Implement `useEffect` to call `fetchLatestAnswer()` on mount.
-  - [ ] P-B2-S3: Implement state for `answer`, `isLoading`, `error`.
-  - [ ] P-B2-S4: Render loading message, error message, or the fetched answer.
-  - [ ] P-B2-S5: Ensure the answer is displayed within `<span id="answer">...</span>`.
-  - [ ] P-B2-S6 _(Optional)_: Implement polling (e.g., `setInterval`) to refresh the answer periodically.
+- [x] **P-B2: Create Answer Display Component (`frontend/src/components/AnswerDisplay.tsx`)**
+  - [x] P-B2-S1: Create a new React functional component.
+  - [x] P-B2-S2: Implement `useEffect` to call `fetchLatestAnswer()` on mount.
+  - [x] P-B2-S3: Implement state for `answer`, `isLoading`, `error`.
+  - [x] P-B2-S4: Render loading message, error message, or the fetched answer.
+  - [x] P-B2-S5: Ensure the answer is displayed within `<span id="answer">...</span>`.
 
-- [ ] **P-B3: Integrate Component (`frontend/src/App.tsx` or Router)**
-  - [ ] P-B3-S1: Add `AnswerDisplay` component to `App.tsx` (or create a new route for it if using React Router).
+- [x] **P-B3: Integrate Component (`frontend/src/App.tsx` or Router)**
+  - [x] P-B3-S1: Add `AnswerDisplay` component to `App.tsx` (or create a new route for it if using React Router).
 
-- [ ] **P-B4: Local Frontend Testing**
-  - [ ] P-B4-S1: Run both local backend and frontend dev servers.
-  - [ ] P-B4-S2: Verify the frontend page loads and displays the current "latestAnswer" from the backend.
-  - [ ] P-B4-S3: Use Postman to send new data to `POST /api/create-answer` on the local backend. Verify the frontend page updates (either on refresh or via polling).
+- [x] **P-B4: Local Frontend Testing**
+  - [x] P-B4-S1: Run both local backend and frontend dev servers.
+  - [x] P-B4-S2: Verify the frontend page loads and displays the current "latestAnswer" from the backend.
+  - [x] P-B4-S3: Use Postman to send new data to `POST /api/create-answer` on the local backend. Verify the frontend page updates (either on refresh or via polling).
 
-- [ ] **P-B5: Git: Commit Frontend Changes**
-  - [ ] P-B5-S1: Create a new feature branch (e.g., `feature/deployment-assignment-frontend`).
-  - [ ] P-B5-S2: Commit changes to `api.ts`, `AnswerDisplay.tsx`, and `App.tsx`.
+- [x] **P-B5: Git: Commit Frontend Changes**
+  - [x] P-B5-S1: Create a new feature branch (e.g., `feature/deployment-assignment-frontend`).
+  - [x] P-B5-S2: Commit changes to `api.ts`, `AnswerDisplay.tsx`, and `App.tsx`.
 
 ---
 
