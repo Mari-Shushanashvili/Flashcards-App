@@ -346,4 +346,31 @@ router.post('/create-answer', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @name GET /api/get-latest-answer
+ * @description Retrieves the most recently stored "latest answer" string from the application's in-memory state.
+ * @route GET /api/get-latest-answer
+ * @param {Request} req The Express request object. No parameters or body expected.
+ * @param {Response} res The Express response object.
+ * @returns {void}
+ *
+ * @spec.requires state.getLatestAnswer is available.
+ * @spec.effects
+ *   - Calls state.getLatestAnswer().
+ *   - On success: Sends a 200 OK response with JSON body { latestAnswer: string | null }.
+ *   - On error: Sends a 500 Internal Server Error response.
+ * @spec.modifies res object.
+ */
+router.get('/get-latest-answer', (req: Request, res: Response) => {
+    console.log(`[API] GET /api/get-latest-answer received`);
+    try {
+        const latestAnswerValue = state.getLatestAnswer();
+        console.log(`[API] GET /api/get-latest-answer - Retrieved answer: "${latestAnswerValue}"`);
+        res.status(200).json({ latestAnswer: latestAnswerValue });
+    } catch (error) {
+        console.error("[API] Error in /api/get-latest-answer while retrieving answer:", error);
+        res.status(500).json({ error: "Failed to retrieve the latest answer due to an internal error." });
+    }
+});
+
 export default router;
