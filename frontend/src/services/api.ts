@@ -39,3 +39,8 @@ export async function advanceDay(): Promise<{ currentDay: number }> {
   const response = await apiClient.post('/day/next');
   return response.data;
 }
+
+export async function fetchLatestAnswer(): Promise<{ latestAnswer: string | null }> {
+  const response = await apiClient.get('/get-latest-answer');
+  return response.data;
+}

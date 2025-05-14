@@ -24,8 +24,8 @@
 ## Phase B: Frontend Preparation (Local Development)
 **Goal:** Modify the existing React frontend to display the data from the new backend endpoint.
 
-- [ ] **P-B1: Update API Service (`frontend/src/services/api.ts`)**
-  - [ ] P-B1-S1: Add `fetchLatestAnswer()` function to call `GET /api/get-latest-answer`.
+- [x] **P-B1: Update API Service (`frontend/src/services/api.ts`)**
+  - [x] P-B1-S1: Add `fetchLatestAnswer()` function to call `GET /api/get-latest-answer`.
 
 - [ ] **P-B2: Create Answer Display Component (`frontend/src/components/AnswerDisplay.tsx`)**
   - [ ] P-B2-S1: Create a new React functional component.
