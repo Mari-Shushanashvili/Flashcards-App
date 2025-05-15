@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <div className="app-container">
       <h1>Flashcard Learner</h1>
       <PracticeView />
-      <hr style={{ margin: '20px 0' }} /> {}
+      <hr style={{ margin: '20px 0' }} />
       <AnswerDisplay />
     </div>
   );

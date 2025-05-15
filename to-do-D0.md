@@ -52,52 +52,52 @@
 **Goal:** Deploy the modified backend and frontend to a live EC2 instance.  
 _Reference provided: `aws-deployment-guide.md`_
 
-- [ ] **P-C1: Prepare EC2 Instance**
-  - [ ] P-C1-S1: Create AWS Account (if not already done).
-  - [ ] P-C1-S2: Launch EC2 Instance (Amazon Linux 2023, t2.micro, new key pair).
-  - [ ] P-C1-S3: Configure initial EC2 Security Group (Allow SSH, HTTP, HTTPS from Anywhere for setup).
-  - [ ] P-C1-S4: Connect to EC2 instance (e.g., via EC2 Instance Connect).
-  - [ ] P-C1-S5: Install required software on EC2 (`dnf update`, `nodejs`, `git`, `pm2`).
+- [x] **P-C1: Prepare EC2 Instance**
+  - [x] P-C1-S1: Create AWS Account (if not already done).
+  - [x] P-C1-S2: Launch EC2 Instance (Amazon Linux 2023, t2.micro, new key pair).
+  - [x] P-C1-S3: Configure initial EC2 Security Group (Allow SSH, HTTP, HTTPS from Anywhere for setup).
+  - [x] P-C1-S4: Connect to EC2 instance (e.g., via EC2 Instance Connect).
+  - [x] P-C1-S5: Install required software on EC2 (`dnf update`, `nodejs`, `git`, `pm2`).
 
-- [ ] **P-C2: Deploy Code to EC2**
-  - [ ] P-C2-S1: Merge `feature/deployment-assignment-backend` and `feature/deployment-assignment-frontend` into your main development branch (e.g., `develop` or `main`) and push.
-  - [ ] P-C2-S2: Clone the repository onto the EC2 instance (`git clone ...`).
-  - [ ] P-C2-S3: Install backend dependencies on EC2 (`cd backend && npm install --production`).
-  - [ ] P-C2-S4: Install frontend dependencies and build on EC2 (`cd frontend && npm install && npm run build`).
+- [x] **P-C2: Deploy Code to EC2**
+  - [x] P-C2-S1: Merge `feature/deployment-assignment-backend` and `feature/deployment-assignment-frontend` into your main development branch (e.g., `develop` or `main`) and push.
+  - [x] P-C2-S2: Clone the repository onto the EC2 instance (`git clone ...`).
+  - [x] P-C2-S3: Install backend dependencies on EC2 (`cd backend && npm install --production`).
+  - [x] P-C2-S4: Install frontend dependencies and build on EC2 (`cd frontend && npm install && npm run build`).
 
-- [ ] **P-C3: Configure Application on EC2**
-  - [ ] P-C3-S1: Configure Backend Server Listen Address.  
+- [x] **P-C3: Configure Application on EC2**
+  - [x] P-C3-S1: Configure Backend Server Listen Address.  
     *Details:* Ensure `app.listen` in `backend/src/server.ts` (or its compiled version) uses `'0.0.0.0'` or is not restricted to `localhost`. Rebuild backend on EC2 if source code changed.
-  - [ ] P-C3-S2: Create Backend `.env` file on EC2.  
+  - [x] P-C3-S2: Create Backend `.env` file on EC2.  
     *Details:* In `backend/`, create `.env` with `PORT=3001`.
-  - [ ] P-C3-S3: Update Frontend API Endpoint URL.  
+  - [x] P-C3-S3: Update Frontend API Endpoint URL.  
     *Details:* Modify `frontend/src/services/api.ts` on EC2 to point `API_BASE_URL` to `http://<YOUR_EC2_PUBLIC_IP>:<BACKEND_PORT>/api`.
-  - [ ] P-C3-S4: Rebuild Frontend on EC2 after API URL change (`cd frontend && npm run build`).
-  - [ ] P-C3-S5: Configure EC2 Security Group Inbound Rules.  
+  - [x] P-C3-S4: Rebuild Frontend on EC2 after API URL change (`cd frontend && npm run build`).
+  - [x] P-C3-S5: Configure EC2 Security Group Inbound Rules.  
     *Details:*  
     - Allow Custom TCP for backend port (e.g., 3001) from Anywhere.  
     - Allow Custom TCP for frontend serving port (e.g., 5173/5174 or 80) from Anywhere.
 
-- [ ] **P-C4: Run Applications with PM2 on EC2**
-  - [ ] P-C4-S1: Start Backend with PM2.  
+- [x] **P-C4: Run Applications with PM2 on EC2**
+  - [x] P-C4-S1: Start Backend with PM2.  
     `cd backend && pm2 start dist/server.js --name "assignment-backend"`
-  - [ ] P-C4-S2: Start Frontend with PM2 (serving built assets).  
+  - [x] P-C4-S2: Start Frontend with PM2 (serving built assets).  
     `cd frontend && pm2 start serve --name "assignment-frontend" -- -s dist -l 5174`
-  - [ ] P-C4-S3: Verify PM2 status (`pm2 list`).
-  - [ ] P-C4-S4 _(Optional)_: Configure PM2 startup on reboot (`pm2 startup`, `pm2 save`).
+  - [x] P-C4-S3: Verify PM2 status (`pm2 list`).
+  - [x] P-C4-S4 _(Optional)_: Configure PM2 startup on reboot (`pm2 startup`, `pm2 save`).
 
-- [ ] **P-C5: Final Testing on Live URLs**
-  - [ ] P-C5-S1: Use Postman to send data to the live backend URL:  
+- [x] **P-C5: Final Testing on Live URLs**
+  - [x] P-C5-S1: Use Postman to send data to the live backend URL:  
     `POST http://<EC2_IP>:<BACKEND_PORT>/api/create-answer` with body `{ "data": "Live EC2 Test!" }`.
-  - [ ] P-C5-S2: Open the live frontend URL `http://<EC2_IP>:<FRONTEND_PORT>` in a browser.
-  - [ ] P-C5-S3: Verify the frontend displays "Live EC2 Test!" within `<span id="answer">...</span>`.
+  - [x] P-C5-S2: Open the live frontend URL `http://<EC2_IP>:<FRONTEND_PORT>` in a browser.
+  - [x] P-C5-S3: Verify the frontend displays "Live EC2 Test!" within `<span id="answer">...</span>`.
 
 ---
 
 ## Phase D: Submission
-- [ ] **P-D1: Finalize URLs**
-  - [ ] P-D1-S1: Confirm the live Backend URL (e.g., `http://<EC2_IP>:3001/api/create-answer`).
-  - [ ] P-D1-S2: Confirm the live Frontend URL (e.g., `http://<EC2_IP>:5174`).
+- [x] **P-D1: Finalize URLs**
+  - [x] P-D1-S1: Confirm the live Backend URL (e.g., `http://<EC2_IP>:3001/api/create-answer`).
+  - [x] P-D1-S2: Confirm the live Frontend URL (e.g., `http://<EC2_IP>:5174`).
 
-- [ ] **P-D2: Submit URLs**
-  - [ ] P-D2-S1: Submit the two URLs to the provided assignment link.
+- [x] **P-D2: Submit URLs**
+  - [x] P-D2-S1: Submit the two URLs to the provided assignment link.
