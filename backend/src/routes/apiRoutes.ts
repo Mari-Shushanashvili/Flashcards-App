@@ -373,4 +373,51 @@ router.get('/get-latest-answer', (req: Request, res: Response) => {
     }
 });
 
+
+/**
+ * @name POST /api/create-answer
+ * @description Stores a new "latest answer" string in the application's in-memory state.
+ * @route POST /api/create-answer
+ * @param {Request} req The Express request object. Expects JSON body { "data": "string" }.
+ * @param {Response} res The Express response object.
+ */
+router.post('/create-answer', (req: Request, res: Response) => {
+    console.log(`[API] POST /api/create-answer received with body:`, req.body);
+    const { data } = req.body;
+
+    if (!data || typeof data !== 'string' || data.trim() === '') {
+        console.warn("[API] POST /api/create-answer - Missing or invalid 'data' field.");
+        return res.status(400).json({ error: "Missing or invalid 'data' field. It must be a non-empty string." });
+    }
+
+    try {
+        state.setLatestAnswer(data.trim());
+        console.log(`[API] POST /api/create-answer - Successfully set answer: "${data.trim()}"`);
+        res.status(201).json({ message: "Answer created successfully", answer: data.trim() });
+    } catch (error) {
+        console.error("[API] Error in /api/create-answer:", error);
+        res.status(500).json({ error: "Failed to create answer due to an internal error." });
+    }
+});
+
+/**
+ * @name GET /api/get-latest-answer
+ * @description Retrieves the most recently stored "latest answer" string from the application's in-memory state.
+ * @route GET /api/get-latest-answer
+ * @param {Request} req The Express request object. No parameters or body expected.
+ * @param {Response} res The Express response object.
+ */
+router.get('/get-latest-answer', (req: Request, res: Response) => {
+    console.log(`[API] GET /api/get-latest-answer received`);
+    try {
+        const latestAnswer = state.getLatestAnswer(); // Uses state.ts
+        console.log(`[API] GET /api/get-latest-answer - Retrieved answer: "${latestAnswer}"`);
+        res.status(200).json({ latestAnswer: latestAnswer });
+    } catch (error) {
+        console.error("[API] Error in /api/get-latest-answer:", error);
+        res.status(500).json({ error: "Failed to retrieve the latest answer due to an internal error." });
+    }
+});
+
+
 export default router;
