@@ -1,4 +1,5 @@
 # Deployment Assignment To-Do Plan
+# The POST /api/create-answer endpoint expects a JSON body and a Content-Type: application/json header. 
 
 ## Phase A: Backend Preparation (Local Development)
 **Goal:** Modify the existing backend to meet the new assignment's API endpoint requirements.
